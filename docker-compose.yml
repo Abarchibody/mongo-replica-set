@@ -1,0 +1,48 @@
+version: "3"
+services:
+  mongo1:
+    hostname: mongo-h1
+    container_name: mongo-c1
+    image: "mongo-rs1"
+    build: ./rs1
+    ports:
+      - 27001:27017
+    volumes:
+      - ./rs1/data:/data/db
+
+  mongo2:
+    hostname: mongo-h2
+    container_name: mongo-c2
+    image: "mongo-rs2"
+    build: ./rs2
+    ports:
+      - 27002:27017
+    volumes:
+      - ./rs2/data:/data/db
+    depends_on:
+      - "mongo1"
+
+  mongo3:
+    hostname: mongo-h3
+    container_name: mongo-c3
+    image: "mongo-rs3"
+    build: ./rs3
+    ports:
+      - 27003:27017
+    volumes:
+      - ./rs3/data:/data/db
+    depends_on:
+      - "mongo2"
+
+  # setup:
+  #   hostname: setup-h
+  #   container_name: setup-c
+  #   image: setup-rs
+  #   build: ./setup
+  #   depends_on:
+  #     - "mongo3"
+
+  # adminmongo:
+  #   image: mrvautin/adminmongo
+  #   ports:
+  #     - "1234:1234"
