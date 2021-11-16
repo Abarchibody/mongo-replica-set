@@ -9,6 +9,9 @@ services:
       - 27001:27017
     volumes:
       - ./rs1/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 8ae6d1af707a71ad
 
   mongo2:
     hostname: mongo-h2
@@ -19,6 +22,9 @@ services:
       - 27002:27017
     volumes:
       - ./rs2/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 8ae6d1af707a71ad
     depends_on:
       - "mongo1"
 
@@ -31,6 +37,9 @@ services:
       - 27003:27017
     volumes:
       - ./rs3/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 8ae6d1af707a71ad
     depends_on:
       - "mongo2"
 
