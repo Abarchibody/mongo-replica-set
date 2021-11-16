@@ -34,13 +34,13 @@ services:
     depends_on:
       - "mongo2"
 
-  # setup:
-  #   hostname: setup-h
-  #   container_name: setup-c
-  #   image: setup-rs
-  #   build: ./setup
-  #   depends_on:
-  #     - "mongo3"
+  setup:
+    hostname: setup-h
+    container_name: setup-c
+    image: setup-rs
+    build: ./setup
+    depends_on:
+      - "mongo3"
 
   # adminmongo:
   #   image: mrvautin/adminmongo
